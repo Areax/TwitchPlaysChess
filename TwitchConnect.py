@@ -1,4 +1,5 @@
 import socket, string
+from movemouse import convert, movepiece
 
 HOST = "irc.twitch.tv"
 PORT = 6667
@@ -38,7 +39,13 @@ while True:
 		username = usernamesplit[0]
 
 		print(username + ": " + message)
-		if message == "Hey":
+		
+		if (rcCount > 1 and button == Button.left and pressed == False and isMoving == False):
+			#print(boardSize[0], " ", boardSize[1])
+			move = convert('e2e4')
+			move_piece(move)
+			
+		elif message == "Hey":
 			send_message("Welcome to my stream, " + username)
 		else: 
 			send_message("lol")
